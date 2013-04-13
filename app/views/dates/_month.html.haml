@@ -1,0 +1,45 @@
+- next_month = the_month + 1.month
+- prev_month = the_month - 1.month
+- start_date = Date.parse("01/#{the_month.month}/#{the_month.year}")
+- start_wday = start_date.wday
+%table.table-condensed.table-striped.calendar
+  %thead
+    %tr
+      %th{colspan: 7}
+        = link_to "/dates/get_month?year=#{prev_month.year}&month=#{prev_month.month}", class: 'btn', remote: true do
+          %i.icon-chevron-left
+        %a.btn
+          = l the_month, :format => '%b %Y'
+        = link_to "/dates/get_month?year=#{next_month.year}&month=#{next_month.month}", class: 'btn', remote: true do
+          %i.icon-chevron-right
+    %tr
+      %th
+        Su
+      %th
+        Mo
+      %th
+        Tu
+      %th
+        We
+      %th
+        Th
+      %th
+        Fi
+      %th
+        Sa
+  %tbody
+    %tr
+      - if start_wday > 0
+        - (0..start_wday - 1).each do |day_diff|
+          %td.muted
+            = (start_date - (start_wday - day_diff)).day
+      - (start_wday..6).each do |wday|
+        %td
+          = start_date.day
+          - start_date += 1
+    - while (start_date.month == the_month.month) do
+      %tr
+        - (1..7).each do |day_diff|
+          %td{class: (start_date.month == the_month.month ? '' : 'muted')}
+            = start_date.day
+            - start_date += 1

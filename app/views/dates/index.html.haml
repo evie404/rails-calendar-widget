@@ -1,0 +1,9 @@
+.span12
+  %h1
+    Calender Widget
+.span9
+  Simple calender widget with Twitter Bootstrap inspired by
+  = link_to 'Better One Month Calendar | Bootsnipp.com', 'http://bootsnipp.com/snipps/better-one-month-calendar', target: '_blank'
+.span3
+  #calender_widget
+    = render partial: 'dates/month', locals: {the_month: @the_month}

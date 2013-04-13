@@ -1,0 +1,1 @@
+$('#calender_widget').html('<%= j render partial: 'dates/month', locals: {the_month: @the_month} %>');
